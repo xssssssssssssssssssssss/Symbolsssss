@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Symbol World</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #080A0F;
+            font-family: "Segoe UI", sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+        .topbar {
+            background: #0d0f15;
+            padding: 15px 30px;
+            box-shadow: 0 0 25px #2b6eff50;
+        }
+        .topbar h1 {
+            margin: 0;
+            color: #5fb8ff;
+            font-size: 28px;
+        }
+        .sidebar {
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            width: 260px;
+            height: 640px;
+            background: #10141d;
+            border: 2px solid #2b6eff;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            color: #6eb7ff;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        .divider {
+            height: 2px;
+            background: #2b6eff;
+            margin: 10px 0 20px;
+        }
+        .module-btn {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 12px;
+            font-size: 18px;
+            background: #161b24;
+            color: #c9ddff;
+            border: none;
+            outline: none;
+            border-radius: 12px;
+            transition: 0.2s;
+        }
+        .module-btn:hover {
+            background: #2b6eff;
+            cursor: pointer;
+        }
+        #selector {
+            position: absolute;
+            top: 110px;
+            left: 10px;
+            width: 6px;
+            height: 50px;
+            background: #2b6eff;
+            border-radius: 4px;
+            transition: 0.15s;
+            box-shadow: 0 0 15px rgba(43,110,255,0.8);
+        }
+        .main {
+            position: absolute;
+            top: 70px;
+            left: 310px;
+            width: 880px;
+            height: 640px;
+            background: #121722;
+            border-radius: 20px;
+            border: 2px solid #232b3a;
+            padding: 30px;
+        }
+        .main h1 {
+            margin-top: 0;
+            color: #87c0ff;
+            font-size: 34px;
+            transition: color 0.2s;
+        }
+        .main-divider {
+            height: 2px;
+            background: #2b6eff;
+            margin: 20px 200px;
+        }
+        .text-panel {
+            background: #0b0e14;
+            border: 1px solid #2b6eff;
+            border-radius: 15px;
+            padding: 20px;
+            height: 470px;
+            overflow-y: auto;
+            color: #d0e6ff;
+            font-family: Consolas, monospace;
+            font-size: 16px;
+            white-space: pre-line;
+        }
+        .text-panel::-webkit-scrollbar {
+            width: 10px;
+        }
+        .text-panel::-webkit-scrollbar-thumb {
+            background: #2b6eff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <h1>Symbol World</h1>
+</div>
+
+<div class="sidebar">
+    <h2>MODULES</h2>
+    <div class="divider"></div>
+
+    <button class="module-btn" onclick="selectModule('OGFMH', 0)">OGFMH</button>
+    <button class="module-btn" onclick="selectModule('gg', 1)">UG</button>
+    <button class="module-btn" onclick="selectModule('test1', 2)">soon</button>
+    <button class="module-btn" onclick="selectModule('test2', 3)">soon</button>
+    <button class="module-btn" onclick="selectModule('test3', 4)">soon</button>
+    <button class="module-btn" onclick="selectModule('test4', 5)">soon</button>
+
+    <div id="selector"></div>
+</div>
+
+<div class="main">
+    <h1 id="header">Symbol World</h1>
+    <div class="main-divider"></div>
+
+    <div class="text-panel" id="output">
+        Select a module from the left menu...
+    </div>
+</div>
+
+<script>
+
+    const moduleContent = {
+        "OGFMH": 
+`Soon....`,
+
+        "gg": 
+`soon`,
+
+        "test1":
+`soon`,
+
+        "test2":
+`soon`,
+
+        "test3":
+`soon`,
+
+        "test4":
+`soon`
+    };
+
+    function selectModule(name, index) {
+        document.getElementById("header").innerText = name;
+        document.getElementById("output").innerText = moduleContent[name];
+        document.getElementById("selector").style.top = (110 + index * 70) + "px";
+    }
+
+    let colors = ["#7FBFFF", "#89CCFF", "#77B4FF", "#66BBFF", "#5899FF", "#77CCFF"];
+    let i = 0;
+
+    setInterval(() => {
+        document.getElementById("header").style.color = colors[i % colors.length];
+        i++;
+    }, 180);
+
+    let pulse = 0;
+    let direction = 1;
+
+    setInterval(() => {
+        pulse += direction;
+        if (pulse >= 30) direction = -1;
+        if (pulse <= 0) direction = 1;
+
+        document.getElementById("selector").style.boxShadow =
+            `0 0 ${pulse + 15}px rgba(43,110,255,0.9)`;
+    }, 40);
+
+</script>
+
+</body>
+</html>
